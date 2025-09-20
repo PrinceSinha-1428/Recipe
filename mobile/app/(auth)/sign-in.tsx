@@ -7,7 +7,7 @@ import { Image } from 'expo-image';
 import { COLORS } from '@/constants/colors';
 import { Ionicons } from "@expo/vector-icons";
 
-interface Data {
+export interface Data {
   email: string;
   password: string
 }
@@ -24,7 +24,7 @@ const SignInScreen = () => {
   const handleSignIn = async () => {
     const { email, password } = data;
     if(!email || !password){
-      Alert.alert("Please fill all the fields");
+      return Alert.alert("Please fill all the fields");
     }
     if(!isLoaded) return;
     setLoading(true);
