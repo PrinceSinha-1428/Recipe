@@ -6,7 +6,7 @@ import { COLORS } from "../constants/colors";
 import { recipeCardStyles } from "../assets/styles/home.styles";
 import { Meal } from "@/app/(tabs)";
 
-interface RecipeProps {
+export interface RecipeProps {
   recipe: Meal
 }
 
