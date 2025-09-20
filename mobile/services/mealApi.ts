@@ -99,7 +99,7 @@ export const MealAPI = {
       title: meal.strMeal,
       description: meal.strInstructions ? meal.strInstructions.substring(0,120) + "..." : "Delicious Meal from TheMealDB",
       image: meal.strMealThumb,
-      cookingTime: "30 minutes",
+      cookingTime: `${Math.floor(Math.random() * (90 - 20 + 1) + 20)} minutes`,
       servings: 4,
       category: meal.strCategory || "Main Course",
       area: meal.strArea,

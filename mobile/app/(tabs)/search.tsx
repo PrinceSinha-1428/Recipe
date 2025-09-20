@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native'
 import { Meal } from '.';
 import { NoResultsFound } from '@/components/NoResultsFound';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 const SearchScreen = () => {
 
@@ -66,7 +67,7 @@ const SearchScreen = () => {
     handleSearch();
   }, [ debouncedSearchQuery, initialLoading]);
 
-  if(initialLoading) return <Text>Loading data....</Text>
+  if(initialLoading) return <LoadingSpinner message='Loading recipes...' size='large' />
 
 
   return (
@@ -101,7 +102,7 @@ const SearchScreen = () => {
         </View>
       {loading ? (
         <View style={searchStyles.loadingContainer}>
-          <Text>Loading...</Text>
+          <LoadingSpinner message='Searching recipes...' size="small" />
         </View>
       ) : (
         <FlatList
