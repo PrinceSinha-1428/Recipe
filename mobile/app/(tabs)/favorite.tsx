@@ -22,7 +22,7 @@ const FavoriteScreen = () => {
     const loadFavorites = async () => {
         try {
           setLoading(true);
-          const response = await fetch(`${apiUrl}/favorite/${user?.id}`);
+          const response = await fetch(`${apiUrl}/favorites/${user?.id}`);
           if(!response.ok) throw new Error("Failed to fetch favorites");
           const favorites = await response.json();
           const transformedFavorites = favorites.map((favorite: any) => ({
