@@ -1,5 +1,6 @@
 import { homeStyles } from '@/assets/styles/home.styles';
 import CategoryFilter from '@/components/CategoryFilter';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import RecipeCard from '@/components/RecipeCard';
 import { COLORS } from '@/constants/colors';
 import { MealAPI } from '@/services/mealApi';
@@ -89,7 +90,9 @@ const HomeScreen = () => {
 
   useEffect(() => {
     loadData();
-  }, [])
+  }, []);
+
+  if(loading && !refreshing) return <LoadingSpinner message='Loading meals...' size='large' />
 
 
   return (
