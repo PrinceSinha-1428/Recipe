@@ -6,11 +6,12 @@ import { useUser } from '@clerk/clerk-expo';
 import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { View, Text, Alert, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Alert, ScrollView, TouchableOpacity, Platform } from 'react-native';
 import { LinearGradient} from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/constants/colors';
 import { WebView } from "react-native-webview";
+import YoutubePlayer from "react-native-youtube-iframe";
 
 
 interface Recipe {
@@ -77,6 +78,11 @@ const RecipeDetailScreen = () => {
   const getYoutubeEmbedUrl =  (url: string) => {
     const videoId = url.split("v=")[1];
     return `https://www.youtube.com/embed/${videoId}`;
+  }
+  const getYoutubeVideoId =  (url: string) => {
+    if (!url) return '';
+  const videoIdMatch = url.match(/v=([a-zA-Z0-9_-]+)/);
+  return videoIdMatch ? videoIdMatch[1] : '';
   }
 
   const handleToggleSave = async () => {
@@ -211,12 +217,20 @@ const RecipeDetailScreen = () => {
               </View>
 
               <View style={recipeDetailStyles.videoCard}>
-                <WebView
+              {Platform.OS === 'ios' ?   <WebView
                   style={recipeDetailStyles.webview}
                   source={{ uri: getYoutubeEmbedUrl(recipe.youtubeUrl) }}
                   allowsFullscreenVideo
                   mediaPlaybackRequiresUserAction={false}
-                />
+                  javaScriptEnabled={true}        
+                  domStorageEnabled={true}       
+                  allowsInlineMediaPlayback={true}
+                /> : 
+                <YoutubePlayer
+                  height={200}
+                  play={false}
+                  videoId={getYoutubeVideoId(recipe.youtubeUrl)}
+                />}
               </View>
             </View>
           )}
