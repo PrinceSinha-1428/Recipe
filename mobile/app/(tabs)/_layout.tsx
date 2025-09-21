@@ -2,11 +2,17 @@ import { COLORS } from '@/constants/colors';
 import { useAuth } from '@clerk/clerk-expo'
 import { Ionicons } from '@expo/vector-icons';
 import { Redirect, Tabs } from 'expo-router'
+import { useEffect } from 'react';
+import { Platform } from 'react-native';
 
 
 const TabsLayout = () => {
+
+
   const { isSignedIn } = useAuth();
+
   if(!isSignedIn) return <Redirect href={'/(auth)/sign-in'} />
+
   return (
     <Tabs 
       screenOptions={{
@@ -17,12 +23,13 @@ const TabsLayout = () => {
           backgroundColor: COLORS.white,
           borderTopColor: COLORS.border,
           borderWidth: 1,
-          paddingBottom: 8,
+          paddingBottom: 9,
           paddingTop: 8,
-          height: 80,
+          height: Platform.OS === 'ios' ? 90 : 80,
+          position: "absolute",   // <-- key
         },
         tabBarLabelStyle: {
-          fontSize: 12,
+          fontSize: 14,
           fontWeight: "600"
         }
       }}

@@ -41,7 +41,7 @@ const HomeScreen = () => {
       setLoading(true)
       const [ categoryMeal, randomMeals, featuredMeal ] = await Promise.all([
         MealAPI.getCategories(),
-        MealAPI.getRandomMeals(12),
+        MealAPI.getRandomMeals(20),
         MealAPI.getRandomMeal()
       ]);
       const transformedCategories = categoryMeal.map((cat: any, index: any) => ({

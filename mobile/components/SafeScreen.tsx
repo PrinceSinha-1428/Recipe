@@ -1,11 +1,15 @@
 import { COLORS } from "@/constants/colors"
-import { View } from "react-native"
+import { Platform, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 
 const SafeScreen = ({children}: {children: React.ReactNode}) => {
   const insets = useSafeAreaInsets()
   return (
-    <View style={{ paddingTop: insets.top, flex: 1, backgroundColor: COLORS.background }}>
+    <View style={{ 
+      paddingTop: insets.top, 
+      paddingBottom: Platform.OS === 'ios' ? 0 : insets.bottom, 
+      flex: 1, 
+      backgroundColor: COLORS.background }}>
      {children}
     </View>
   )

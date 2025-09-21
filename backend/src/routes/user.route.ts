@@ -4,7 +4,7 @@ import { addToFavorite, deletefav, getUserfav } from "../controllers/user.contro
 const userRouter = Router();
 
 userRouter.post("/favorite", addToFavorite);
-userRouter.delete("/favorite/:userId/:recipeId", deletefav);
-userRouter.get("/favorite/:userId/", getUserfav);
+userRouter.delete("/favorites/:userId/:recipeId", deletefav);
+userRouter.get("/favorites/:userId/", getUserfav);
 
 export default userRouter;

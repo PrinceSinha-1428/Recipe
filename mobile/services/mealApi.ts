@@ -12,6 +12,17 @@ export const MealAPI = {
       return [];
     }
   },
+ // by region
+  searchMealsByArea: async (query: string) => {
+    try {
+      const response = await fetch(`${baseURL}/filter.php?a=${encodeURIComponent(query)}`);
+      const data = await response.json();
+      return data.meals || [];
+    } catch (error) {
+      console.error("Error searching meal by Area", error);
+      return [];
+    }
+  },
    // lookup full meal details by id
   getMealById: async (id: string) => {
     try {
