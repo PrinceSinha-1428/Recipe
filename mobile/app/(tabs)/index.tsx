@@ -105,7 +105,7 @@ const HomeScreen = () => {
       contentContainerStyle={homeStyles.scrollContent}
        >
         <View style={homeStyles.welcomeSection} >
-          <Image source={require("../../assets/images/lamb.png")} style={{
+          <Image source={require("../../assets/images/meal.png")} style={{
             width: 100,
             height: 100
           }}  />
@@ -113,7 +113,7 @@ const HomeScreen = () => {
             width: 100,
             height: 100
           }}  />
-          <Image source={require("../../assets/images/pork.png")} style={{
+          <Image source={require("../../assets/images/wrap.png")} style={{
             width: 100,
             height: 100
           }}  />
